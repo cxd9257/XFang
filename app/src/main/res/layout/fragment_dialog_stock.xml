@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Spinner
+            android:id="@+id/spin_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/stock_type"/>
+        <EditText
+            android:id="@+id/et_stock_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="股票代码"
+            android:inputType="number"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_stock_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+    <EditText
+        android:id="@+id/et_stock_buy_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="买入价"
+        android:inputType="number|numberDecimal"/>
+    <EditText
+        android:id="@+id/et_stock_buy_measure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="买入量"/>
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="确认"/>
+</LinearLayout>
