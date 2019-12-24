@@ -24,7 +24,7 @@ public class StockDataBeanDao extends AbstractDao<StockDataBean, Long> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Ids = new Property(0, long.class, "ids", true, "_id");
+        public final static Property Ids = new Property(0, Long.class, "ids", true, "_id");
         public final static Property Code = new Property(1, String.class, "code", false, "CODE");
         public final static Property Name = new Property(2, String.class, "name", false, "NAME");
         public final static Property BuyPrice = new Property(3, String.class, "buyPrice", false, "BUY_PRICE");
@@ -48,7 +48,7 @@ public class StockDataBeanDao extends AbstractDao<StockDataBean, Long> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"STOCK_DATA_BEAN\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ," + // 0: ids
+                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: ids
                 "\"CODE\" TEXT," + // 1: code
                 "\"NAME\" TEXT," + // 2: name
                 "\"BUY_PRICE\" TEXT," + // 3: buyPrice
@@ -68,7 +68,11 @@ public class StockDataBeanDao extends AbstractDao<StockDataBean, Long> {
     @Override
     protected final void bindValues(DatabaseStatement stmt, StockDataBean entity) {
         stmt.clearBindings();
-        stmt.bindLong(1, entity.getIds());
+ 
+        Long ids = entity.getIds();
+        if (ids != null) {
+            stmt.bindLong(1, ids);
+        }
  
         String code = entity.getCode();
         if (code != null) {
@@ -114,7 +118,11 @@ public class StockDataBeanDao extends AbstractDao<StockDataBean, Long> {
     @Override
     protected final void bindValues(SQLiteStatement stmt, StockDataBean entity) {
         stmt.clearBindings();
-        stmt.bindLong(1, entity.getIds());
+ 
+        Long ids = entity.getIds();
+        if (ids != null) {
+            stmt.bindLong(1, ids);
+        }
  
         String code = entity.getCode();
         if (code != null) {
@@ -159,13 +167,13 @@ public class StockDataBeanDao extends AbstractDao<StockDataBean, Long> {
 
     @Override
     public Long readKey(Cursor cursor, int offset) {
-        return cursor.getLong(offset + 0);
+        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
     }    
 
     @Override
     public StockDataBean readEntity(Cursor cursor, int offset) {
         StockDataBean entity = new StockDataBean( //
-            cursor.getLong(offset + 0), // ids
+            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // ids
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // code
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // buyPrice
@@ -180,7 +188,7 @@ public class StockDataBeanDao extends AbstractDao<StockDataBean, Long> {
      
     @Override
     public void readEntity(Cursor cursor, StockDataBean entity, int offset) {
-        entity.setIds(cursor.getLong(offset + 0));
+        entity.setIds(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setCode(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setBuyPrice(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
@@ -208,7 +216,7 @@ public class StockDataBeanDao extends AbstractDao<StockDataBean, Long> {
 
     @Override
     public boolean hasKey(StockDataBean entity) {
-        throw new UnsupportedOperationException("Unsupported for entities with a non-null key");
+        return entity.getIds() != null;
     }
 
     @Override

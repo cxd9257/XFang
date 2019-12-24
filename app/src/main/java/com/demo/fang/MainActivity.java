@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.demo.fang.base.BaseActivity;
 import com.demo.fang.base.baseMVP.BasePresenter;
 import com.demo.fang.ui.TradeActivity;
+import com.demo.fang.utils.StatusBarUtil;
 import com.demo.fang.widget.StockDialogFragment;
 
 import butterknife.BindView;
@@ -36,18 +37,23 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    public void bindView(View view, Bundle savedInstanceState) {
+        super.bindView(view, savedInstanceState);
+    }
+
+    @Override
     public void initView() {
         super.initView();
     }
 
-    @OnClick({R.id.btn_buy, R.id.btn_trade, R.id.btn_set_money})
+    @OnClick({R.id.btn_buy, R.id.btn_fang_trade, R.id.btn_set_money})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_buy:
                 StockDialogFragment stockDialogFragment = StockDialogFragment.newInstance();
                 stockDialogFragment.show(getSupportFragmentManager(), "");
                 break;
-            case R.id.btn_trade:
+            case R.id.btn_fang_trade:
                 startActivity(new Intent(this, TradeActivity.class));
                 break;
             case R.id.btn_set_money:
@@ -59,6 +65,6 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+          ButterKnife.bind(this);
     }
 }

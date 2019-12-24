@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.demo.fang.R;
 import com.demo.fang.base.BaseFragment;
 import com.demo.fang.base.baseMVP.BasePresenter;
@@ -75,9 +77,10 @@ public class PositionFragment extends BaseFragment {
         mRecyclerView.setAdapter(mStockAdapter = new FangStockAdapter(R.layout.item_fang_context,beanList));
         mStockAdapter.setEnableLoadMore(true);
         mStockAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
-        mRecyclerView.addOnItemTouchListener(new OnItemChildClickListener() {
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
+        mRecyclerView.addOnItemTouchListener(new OnItemClickListener() {
             @Override
-            public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 StockDataBean itemBean = (StockDataBean) adapter.getItem(position);
                 ShowToast(itemBean.getName());
             }
@@ -90,6 +93,11 @@ public class PositionFragment extends BaseFragment {
 
     }
 
+    @Override
+    public void initData() {
+        super.initData();
+        loadingData();
+    }
 
     /**
      * 获取本地数据

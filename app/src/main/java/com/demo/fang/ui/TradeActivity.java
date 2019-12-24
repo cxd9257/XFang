@@ -63,6 +63,7 @@ public class TradeActivity extends BaseActivity {
         mAdapter = new MyPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(mAdapter);
         slidingTabLayout.setViewPager(viewPager);
+        slidingTabLayout.setCurrentTab(4);
     }
     private class MyPagerAdapter extends FragmentPagerAdapter {
         public MyPagerAdapter(FragmentManager fm) {
@@ -87,5 +88,6 @@ public class TradeActivity extends BaseActivity {
 
     @OnClick(R.id.iv_back)
     public void onViewClicked() {
+        finish();
     }
 }

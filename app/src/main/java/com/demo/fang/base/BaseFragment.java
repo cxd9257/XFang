@@ -18,6 +18,7 @@ import com.demo.fang.base.baseMVP.BaseModel;
 import com.demo.fang.base.baseMVP.BasePresenter;
 import com.demo.fang.base.baseMVP.BaseView;
 import com.demo.fang.utils.ShowToast;
+import com.demo.fang.utils.StatusBarUtil;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -57,6 +58,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        StatusBarUtil.setLightMode(getActivity());
         attachView();
         bindView(view,savedInstanceState);
         initView();

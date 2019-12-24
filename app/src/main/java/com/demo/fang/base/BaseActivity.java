@@ -42,6 +42,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends SupportActiv
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         initSwipeBackFinish();
         super.onCreate(savedInstanceState);
+        StatusBarUtil.setLightMode(this);
         mRootView = createView(null,null,savedInstanceState);
         mContext = this;
         setContentView(mRootView);

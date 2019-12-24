@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="55dp"
         android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
@@ -25,13 +25,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:padding="5dp"
         android:background="@android:color/white"
+        android:gravity="center"
         android:orientation="horizontal">
         <LinearLayout
             android:orientation="vertical"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:gravity="center_horizontal"
             android:layout_height="wrap_content">
             <TextView
@@ -50,7 +50,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:gravity="center"
             android:layout_height="wrap_content">
             <TextView
@@ -69,7 +69,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:gravity="center"
             android:layout_height="wrap_content">
             <TextView
@@ -86,20 +86,20 @@
                 style="@style/fang_number_context"/>
         </LinearLayout>
     </LinearLayout>
-    <view
+    <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#eaeaea"/>
+        android:background="@color/colorView"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:padding="5dp"
         android:background="@android:color/white"
+        android:gravity="center"
         android:orientation="horizontal">
         <LinearLayout
             android:orientation="vertical"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:gravity="center_horizontal"
             android:layout_height="wrap_content">
             <TextView
@@ -118,7 +118,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:gravity="center"
             android:layout_height="wrap_content">
             <TextView
@@ -137,7 +137,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:gravity="center"
             android:layout_height="wrap_content">
             <TextView
@@ -154,17 +154,17 @@
                 style="@style/fang_number_context"/>
         </LinearLayout>
     </LinearLayout>
-    <view
+    <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#eaeaea"/>
+        android:background="@color/colorView"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:background="@color/colorBg">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
@@ -172,7 +172,7 @@
             android:layout_marginTop="5dp"
             android:text="名称/市值"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
@@ -180,7 +180,7 @@
             android:layout_marginTop="5dp"
             android:text="成本/现价"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center|left"
@@ -188,7 +188,7 @@
             android:layout_marginTop="5dp"
             android:text="持仓/可用"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"

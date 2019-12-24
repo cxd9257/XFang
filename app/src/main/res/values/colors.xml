@@ -10,4 +10,6 @@
     <color name="colorGreed">#29ae1c</color>
     <color name="textColorGray">#7d848b</color>
     <color name="colorBlack">#03111c</color>
+    <color name="colorView">#eaeaea</color>
+
 </resources>
