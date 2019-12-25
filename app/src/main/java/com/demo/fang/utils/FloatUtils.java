@@ -15,8 +15,15 @@ public class FloatUtils {
     }
     public static String FloatToString(Float a){
         DecimalFormat df = new DecimalFormat("#########.#");
-
         String marketValue = df.format(a);
         return marketValue;
+    }
+    public static String Profit(float nowMarketValues,float marketValues){
+        float profitValus = nowMarketValues-marketValues;
+        return FloatUtils.DecimalFormat2(Float.toString(profitValus));
+    }
+    public static String profitPercent(float newPrice,float buyPrice){
+        float profitPercentValus = (newPrice-buyPrice)/buyPrice*100;
+        return FloatUtils.DecimalFormat2(Float.toString(profitPercentValus))+"%";
     }
 }
