@@ -70,7 +70,6 @@ public class StockDialogFragment extends BaseDialogFragment<StockPresenter> impl
             DisplayMetrics dm = new DisplayMetrics();
             getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
             dialog.getWindow().setLayout((int) (dm.widthPixels * 0.75), ViewGroup.LayoutParams.WRAP_CONTENT);
-
         }
         return dialog;
     }
