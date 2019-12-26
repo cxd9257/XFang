@@ -53,6 +53,8 @@
         android:id="@+id/slidingTabLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
         app:tl_tab_space_equal="true"
         app:tl_indicator_color="@color/colorRad"
         app:tl_indicator_width="40dp"
@@ -61,7 +63,7 @@
         app:tl_divider_width="1dp"
         app:tl_textSelectColor="@color/colorRad"
         app:tl_textUnselectColor="@color/colorBlack"
-        app:tl_textsize="20sp"></com.flyco.tablayout.SlidingTabLayout>
+        app:tl_textsize="18sp"></com.flyco.tablayout.SlidingTabLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

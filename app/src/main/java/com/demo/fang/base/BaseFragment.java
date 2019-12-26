@@ -23,7 +23,7 @@ import com.demo.fang.utils.StatusBarUtil;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseFragment<P extends BasePresenter> extends Fragment implements BaseView {
+public abstract class BaseFragment<P extends BasePresenter> extends SupportFragment implements BaseView {
     protected Context mContext;
     protected View mRootView;
     private ProgressDialog dialog;
@@ -36,7 +36,6 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
         View view = inflater.inflate(getLayoutId(),container,false);
         mPresenter = createPresenter();
         unbinder = ButterKnife.bind(this,view);
-
         return view;
     };
     @Override
@@ -73,8 +72,10 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
         }
 
     }
-    public void onrRetry(){
-
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        initData();
     }
 
     public void initView(){

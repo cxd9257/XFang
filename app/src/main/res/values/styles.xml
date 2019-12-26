@@ -13,22 +13,22 @@
     </style>
     
     <style name="fang_txt_context">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/textColorGray</item>
         <item name="android:layout_gravity">center</item>
     </style>
     <style name="fang_number_context">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:gravity">center</item>
     </style>
     <style name="fang_txt_item_context_name">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/textColorGray</item>
         <item name="android:gravity">center</item>
     </style>
     <style name="fang_number_item_context">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:gravity">center</item>
     </style>

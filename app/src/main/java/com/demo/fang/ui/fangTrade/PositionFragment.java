@@ -1,6 +1,7 @@
 package com.demo.fang.ui.fangTrade;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -108,5 +109,6 @@ public class PositionFragment extends BaseFragment {
             return;
         }
         mStockAdapter.setNewData(beanList);
+        Log.e("查看下",FangDbController.getInstance().querySum().size()+"");
     }
 }

@@ -2,6 +2,7 @@ package com.demo.fang;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -9,11 +10,14 @@ import android.widget.TextView;
 import com.demo.fang.base.BaseActivity;
 import com.demo.fang.base.baseMVP.BasePresenter;
 import com.demo.fang.ui.TradeActivity;
+import com.demo.fang.utils.AppConfig;
+import com.demo.fang.utils.FloatUtils;
 import com.demo.fang.utils.SharePrefUtil;
 import com.demo.fang.widget.SetMoneyDialogFragment;
 import com.demo.fang.widget.StockDialogFragment;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,18 +56,20 @@ public class MainActivity extends BaseActivity {
     @Override
     public void bindView(View view, Bundle savedInstanceState) {
         super.bindView(view, savedInstanceState);
+        if (isFirstStart()) {
+            SharePrefUtil.putString(AppConfig.ALL_MONEY, FloatUtils.DecimalFormat2(random()));
+            SharePrefUtil.commit();
+            Log.e("xxxx888","true");
+        } else {
+            Log.e("xxxx","fa");
+            mAllMoney.setText(SharePrefUtil.getString(AppConfig.ALL_MONEY));
+        }
     }
 
     @Override
     public void initView() {
         super.initView();
-        if (isFirstStart()) {
-            SharePrefUtil.putString("allMoney", random() + "");
-            SharePrefUtil.commit();
-        } else {
-            mAllMoney.setText(SharePrefUtil.getString("allMoney"));
-        }
-        mAllMoney.setText(SharePrefUtil.getString("allMoney"));
+        mAllMoney.setText(SharePrefUtil.getString(AppConfig.ALL_MONEY));
     }
 
     @OnClick({R.id.btn_buy, R.id.btn_fang_trade, R.id.btn_set_money})
@@ -85,6 +91,25 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e("onRestart",SharePrefUtil.getBoolean("isFristLoad")+""+random());
+        mAllMoney.setText(SharePrefUtil.getString(AppConfig.ALL_MONEY));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("onResume",SharePrefUtil.getBoolean("isFristLoad")+""+random());
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e("onPause",SharePrefUtil.getBoolean("isFristLoad")+""+random());
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
@@ -95,29 +120,23 @@ public class MainActivity extends BaseActivity {
      * 检查是否第一次启动
      */
     private boolean isFirstStart() {
+        Log.e("xxx",SharePrefUtil.getBoolean("isFristLoad")+"");
         if (SharePrefUtil.getBoolean("isFristLoad")) {
-            SharePrefUtil.putBoolean("isFristLoad", false);
+            return false;
+        } else {
+            SharePrefUtil.putBoolean("isFristLoad", true);
             SharePrefUtil.commit();
             return true;
-        } else {
-            return false;
         }
     }
 
     /**
      * 生成随机数
      */
-    private double random() {
-        Random random = new Random();
-        double max = 22000.00;
-        double min = 11000.00;
-        double temp = random.nextDouble() * max + min;
-        double low = min - 1;
-        double high = max + 1;
-        while (temp < low || temp > high) {
-            temp = random.nextDouble() * max + min;
-        }
-        return temp;
+    private int random() {
+            int Max = 200000;
+            int Min = 30000;
+            return ThreadLocalRandom.current().nextInt(Min, Max);
     }
 
 }

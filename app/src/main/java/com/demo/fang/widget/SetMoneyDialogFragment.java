@@ -9,6 +9,7 @@ import android.widget.EditText;
 import com.demo.fang.R;
 import com.demo.fang.base.BaseDialogFragment;
 import com.demo.fang.base.baseMVP.BasePresenter;
+import com.demo.fang.utils.AppConfig;
 import com.demo.fang.utils.SharePrefUtil;
 import com.demo.fang.utils.ShowToast;
 
@@ -55,6 +56,8 @@ public class SetMoneyDialogFragment extends BaseDialogFragment {
             ShowToast.showShort(getContext(),"输入的本金也太少了吧");
             return;
         }
-        SharePrefUtil.putString("allMoney",etMoney.getText().toString());
+        SharePrefUtil.putString(AppConfig.ALL_MONEY,etMoney.getText().toString());
+        SharePrefUtil.commit();
+        dismiss();
     }
 }

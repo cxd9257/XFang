@@ -15,13 +15,9 @@ public class DateUtil {
         Calendar dateCalendar = Calendar.getInstance();
         dateCalendar.setTime(date);
         if (nowCalendar.get(Calendar.YEAR) == dateCalendar.get(Calendar.YEAR)
-
                 && nowCalendar.get(Calendar.MONTH) == dateCalendar.get(Calendar.MONTH)
-
                 && nowCalendar.get(Calendar.DATE) == dateCalendar.get(Calendar.DATE)) {
-
             return true;
-
         }
 
         return false;

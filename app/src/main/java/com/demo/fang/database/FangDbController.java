@@ -1,5 +1,7 @@
 package com.demo.fang.database;
 
+import android.database.Cursor;
+
 import com.demo.fang.bean.StockDataBean;
 
 import java.util.List;
@@ -25,5 +27,8 @@ public class FangDbController {
     }
     public List<StockDataBean> queryAll(){
         return dao.queryBuilder().list();
+    }
+    public List<StockDataBean> querySum(){
+        return dao.queryBuilder().where(StockDataBeanDao.Properties.AllMarketValue.eq("allMarketValue")).list();
     }
 }
