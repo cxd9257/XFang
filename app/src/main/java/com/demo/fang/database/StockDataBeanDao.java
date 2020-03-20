@@ -32,7 +32,7 @@ public class StockDataBeanDao extends AbstractDao<StockDataBean, Long> {
         public final static Property BuyMeasure = new Property(5, String.class, "buyMeasure", false, "BUY_MEASURE");
         public final static Property MarketValue = new Property(6, String.class, "marketValue", false, "MARKET_VALUE");
         public final static Property AllMarketValue = new Property(7, String.class, "allMarketValue", false, "ALL_MARKET_VALUE");
-        public final static Property Date = new Property(8, String.class, "date", false, "DATE");
+        public final static Property Date = new Property(8, java.util.Date.class, "date", false, "DATE");
     }
 
 
@@ -56,7 +56,7 @@ public class StockDataBeanDao extends AbstractDao<StockDataBean, Long> {
                 "\"BUY_MEASURE\" TEXT," + // 5: buyMeasure
                 "\"MARKET_VALUE\" TEXT," + // 6: marketValue
                 "\"ALL_MARKET_VALUE\" TEXT," + // 7: allMarketValue
-                "\"DATE\" TEXT);"); // 8: date
+                "\"DATE\" INTEGER);"); // 8: date
     }
 
     /** Drops the underlying database table. */
@@ -109,9 +109,9 @@ public class StockDataBeanDao extends AbstractDao<StockDataBean, Long> {
             stmt.bindString(8, allMarketValue);
         }
  
-        String date = entity.getDate();
+        java.util.Date date = entity.getDate();
         if (date != null) {
-            stmt.bindString(9, date);
+            stmt.bindLong(9, date.getTime());
         }
     }
 
@@ -159,9 +159,9 @@ public class StockDataBeanDao extends AbstractDao<StockDataBean, Long> {
             stmt.bindString(8, allMarketValue);
         }
  
-        String date = entity.getDate();
+        java.util.Date date = entity.getDate();
         if (date != null) {
-            stmt.bindString(9, date);
+            stmt.bindLong(9, date.getTime());
         }
     }
 
@@ -181,7 +181,7 @@ public class StockDataBeanDao extends AbstractDao<StockDataBean, Long> {
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // buyMeasure
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // marketValue
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // allMarketValue
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // date
+            cursor.isNull(offset + 8) ? null : new java.util.Date(cursor.getLong(offset + 8)) // date
         );
         return entity;
     }
@@ -196,7 +196,7 @@ public class StockDataBeanDao extends AbstractDao<StockDataBean, Long> {
         entity.setBuyMeasure(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setMarketValue(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setAllMarketValue(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setDate(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setDate(cursor.isNull(offset + 8) ? null : new java.util.Date(cursor.getLong(offset + 8)));
      }
     
     @Override

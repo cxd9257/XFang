@@ -13,7 +13,7 @@ android {
     buildToolsVersion "29.0.0"
     defaultConfig {
         applicationId "com.demo.fang"
-        minSdkVersion 26
+        minSdkVersion 24
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"

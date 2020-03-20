@@ -18,6 +18,10 @@ public class FloatUtils {
         String marketValue = df.format(a);
         return marketValue;
     }
+    public static Float StringToFloat(String a){
+        float d= Float.parseFloat(a);
+        return d;
+    }
     public static String Profit(float nowMarketValues,float marketValues){
         float profitValus = nowMarketValues-marketValues;
         return FloatUtils.DecimalFormat2(profitValus);
@@ -26,4 +30,6 @@ public class FloatUtils {
         float profitPercentValus = (newPrice-buyPrice)/buyPrice*100;
         return FloatUtils.DecimalFormat2(profitPercentValus)+"%";
     }
+
+
 }

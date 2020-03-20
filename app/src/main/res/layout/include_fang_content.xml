@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
         android:gravity="center">
@@ -14,6 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:paddingLeft="5dp"
             style="@style/fang_number_context"
             android:text="人民币帐户CNY"/>
         <com.demo.fang.widget.FonstText
@@ -21,12 +22,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:textColor="@color/textColorGray"
-            android:textSize="20sp"
+            android:textSize="16sp"
+            android:paddingRight="5dp"
             android:text="银行转账 >"/>
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:background="@android:color/white"
         android:gravity="center"
         android:orientation="horizontal">
@@ -162,7 +164,7 @@
         android:background="@color/colorView"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
         android:orientation="horizontal"

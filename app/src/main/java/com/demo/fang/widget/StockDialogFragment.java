@@ -22,6 +22,8 @@ import com.demo.fang.bean.StockModle;
 import com.demo.fang.database.FangDbController;
 import com.demo.fang.ui.stock.StockPresenter;
 import com.demo.fang.ui.stock.StockView;
+import com.demo.fang.utils.DateUtil;
+import com.demo.fang.utils.FloatUtils;
 import com.demo.fang.utils.ShowToast;
 
 import java.text.SimpleDateFormat;
@@ -148,7 +150,7 @@ public class StockDialogFragment extends BaseDialogFragment<StockPresenter> impl
             return;
         }
         code = stockType+etStockCode.getText().toString();
-        marketValue = Float.valueOf(buyMeasure) * Float.valueOf(buyPrice)+"";
+        marketValue = FloatUtils.DecimalFormat2(Float.valueOf(buyMeasure) * Float.valueOf(buyPrice));
         allMarketValue = "0";
         Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -161,16 +163,9 @@ public class StockDialogFragment extends BaseDialogFragment<StockPresenter> impl
         mStockDataBean.setBuyMeasure(buyMeasure);
         mStockDataBean.setMarketValue(marketValue);
         mStockDataBean.setAllMarketValue(allMarketValue);
-        mStockDataBean.setDate(date);
+        mStockDataBean.setDate(DateUtil.getNowDate());
         if(mStockDataBean!= null){
             saveStockData();
-        }
-    }
-    private void handleDataBase(List<StockDataBean> list){
-        List<StockDataBean> newList = new ArrayList<>();
-        for (int i=0; i<list.size(); i++){
-            StockDataBean info = list.get(i);
-            newList.add(info);
         }
     }
     private void saveStockData() {

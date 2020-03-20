@@ -1,5 +1,7 @@
 package com.demo.fang.ui.fangTrade;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,12 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.chad.library.adapter.base.listener.OnItemLongClickListener;
 import com.demo.fang.R;
 import com.demo.fang.base.BaseFragment;
 import com.demo.fang.base.baseMVP.BasePresenter;
 import com.demo.fang.bean.StockDataBean;
 import com.demo.fang.database.FangDbController;
 import com.demo.fang.ui.adapter.FangStockAdapter;
+import com.demo.fang.utils.AppConfig;
+import com.demo.fang.utils.FloatUtils;
+import com.demo.fang.utils.SharePrefUtil;
 import com.demo.fang.widget.FonstText;
 
 import java.util.List;
@@ -47,6 +53,7 @@ public class PositionFragment extends BaseFragment {
     PtrClassicFrameLayout ptrClassic;
 
     private List<StockDataBean> beanList;
+    private List<StockDataBean> marketValueList;
     private FangStockAdapter mStockAdapter;
     @Override
     protected BasePresenter createPresenter() {
@@ -84,6 +91,15 @@ public class PositionFragment extends BaseFragment {
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 StockDataBean itemBean = (StockDataBean) adapter.getItem(position);
                 ShowToast(itemBean.getName());
+                FangStockDetailsActivity.launch(getContext(),itemBean);
+
+            }
+        });
+        mRecyclerView.addOnItemTouchListener(new OnItemLongClickListener() {
+            @Override
+            public void onSimpleItemLongClick(BaseQuickAdapter adapter, View view, int position) {
+                StockDataBean itemBean = (StockDataBean) adapter.getItem(position);
+                showDeleteStock(itemBean.getIds());
             }
         });
     }
@@ -91,13 +107,56 @@ public class PositionFragment extends BaseFragment {
      * 设置开头数据
      */
     private void setHeadData(){
+        marketValueList = FangDbController.getInstance().queryAll();
+        if (marketValueList.size()>0){
+            ShowToast("查看下"+marketValueList.get(0).getMarketValue()+"");
+            // double a =  marketValueList.stream().mapToDouble(StockDataBean::marketValueList).sum();
+            float a = 0; //总市值
+            for (int i = 0; i < marketValueList.size(); i++) {
+                a = Float.parseFloat(marketValueList.get(i).getMarketValue()) + a;
+            }
+            float b = 0; //总盈亏
+            for (int i = 0; i < marketValueList.size(); i++) {
+                b = Float.parseFloat(marketValueList.get(i).getMarketValue()) + b;
+            }
+            String allMoney = SharePrefUtil.getString(AppConfig.ALL_MONEY);
+            txtAllMoney.setText(FloatUtils.FloatToString(FloatUtils.StringToFloat(allMoney)+a)); //总资产
+            txtAllMarket.setText(a+"");
+        }else{
+            String allMoney = SharePrefUtil.getString(AppConfig.ALL_MONEY);
+            txtAllMoney.setText(allMoney); //总资产
+            txtAllMarket.setText("0.00");
+        }
 
+
+    }
+
+    /**
+     * 删除
+     */
+    private void showDeleteStock(long ids){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("确认删除吗？");
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                FangDbController.getInstance().deleteNote(ids);
+            }
+        });
+        builder.show();
     }
 
     @Override
     public void initData() {
         super.initData();
         loadingData();
+        setHeadData();
     }
 
     /**
@@ -109,6 +168,6 @@ public class PositionFragment extends BaseFragment {
             return;
         }
         mStockAdapter.setNewData(beanList);
-        Log.e("查看下",FangDbController.getInstance().querySum().size()+"");
+
     }
 }

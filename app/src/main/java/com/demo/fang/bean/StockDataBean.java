@@ -6,6 +6,8 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import org.greenrobot.greendao.annotation.Generated;
 @Entity
 public class StockDataBean implements Serializable, MultiItemEntity {
@@ -21,12 +23,12 @@ public class StockDataBean implements Serializable, MultiItemEntity {
     private String buyMeasure;
     private String marketValue;
     private String allMarketValue;
-    private String date;
+    private Date date;
 
-    @Generated(hash = 1332217117)
+    @Generated(hash = 1545617390)
     public StockDataBean(Long ids, String code, String name, String buyPrice,
             String newPrice, String buyMeasure, String marketValue,
-            String allMarketValue, String date) {
+            String allMarketValue, Date date) {
         this.ids = ids;
         this.code = code;
         this.name = name;
@@ -111,11 +113,11 @@ public class StockDataBean implements Serializable, MultiItemEntity {
         this.allMarketValue = allMarketValue;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return this.date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }

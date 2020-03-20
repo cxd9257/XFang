@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.TradeActivity"/>
+        <activity android:name=".ui.fangTrade.FangStockDetailsActivity"/>
     </application>
 
 </manifest>

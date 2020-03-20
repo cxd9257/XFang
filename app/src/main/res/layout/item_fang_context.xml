@@ -5,7 +5,7 @@
     android:background="@android:color/white">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:gravity="center"
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
@@ -79,7 +79,7 @@
                 android:id="@+id/tv_profit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/fang_number_item_context"
+                style="@style/fang_txt_item_context_name"
                 android:text="58955"/>
             <com.demo.fang.widget.FonstText
                 android:id="@+id/tv_profit_percent"
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txt_all_money"
                 android:text="1002%"
-                style="@style/fang_number_item_context"/>
+                style="@style/fang_txt_item_context_name"/>
         </LinearLayout>
     </LinearLayout>
     <View

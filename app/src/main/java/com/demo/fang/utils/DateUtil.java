@@ -27,7 +27,7 @@ public class DateUtil {
         Date currentTime = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateString = formatter.format(currentTime);
-        ParsePosition pos = new ParsePosition(8);
+        ParsePosition pos = new ParsePosition(0);
         Date currentTime_2 = formatter.parse(dateString, pos);
         return currentTime_2;
     }
@@ -43,4 +43,9 @@ public class DateUtil {
         Date strtodate = formatter.parse(strDate, pos);
         return strtodate;
     }
+    public static String dateToStrLong(java.util.Date dateDate) {
+           SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+           String dateString = formatter.format(dateDate);
+           return dateString;
+         }
 }

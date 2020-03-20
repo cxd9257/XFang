@@ -133,10 +133,11 @@ public class MainActivity extends BaseActivity {
     /**
      * 生成随机数
      */
-    private int random() {
-            int Max = 200000;
-            int Min = 30000;
-            return ThreadLocalRandom.current().nextInt(Min, Max);
+    private float random() {
+        float min = 100f;
+        float max = 32050f;
+        float floatBounded = min + new Random().nextFloat() * (max - min);
+            return floatBounded;
     }
 
 }

@@ -8,13 +8,13 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="50dp"
         app:layout_scrollFlags="scroll|enterAlways">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:gravity="center">
 
             <ImageView
@@ -29,10 +29,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="5dp"
                 android:text="普通交易"
                 android:textColor="@android:color/black"
-                android:textSize="22sp"
+                android:textSize="21sp"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -52,21 +51,19 @@
     <com.flyco.tablayout.SlidingTabLayout
         android:id="@+id/slidingTabLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
+        android:layout_height="35dp"
         app:tl_tab_space_equal="true"
         app:tl_indicator_color="@color/colorRad"
-        app:tl_indicator_width="40dp"
+        app:tl_indicator_width="30dp"
         app:tl_indicator_height="3dp"
         app:tl_divider_color="#d5d9db"
-        app:tl_divider_width="1dp"
+        app:tl_divider_width="0.5dp"
         app:tl_textSelectColor="@color/colorRad"
         app:tl_textUnselectColor="@color/colorBlack"
-        app:tl_textsize="18sp"></com.flyco.tablayout.SlidingTabLayout>
+        app:tl_textsize="15sp"></com.flyco.tablayout.SlidingTabLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0.5dp"
         android:background="#acb0b2"></View>
     <com.demo.fang.widget.CustomViewPager
         android:id="@+id/viewPager"
